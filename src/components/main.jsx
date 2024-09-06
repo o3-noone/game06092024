@@ -12,7 +12,7 @@ const Main = () => {
   const [arr8, setArr8] = useState([]);
   const [arr9, setArr9] = useState([]);
   const getWidth1 = useRef(null)
-  const [itemWidth, setItemWidth] = useState(40)
+  const [itemWidth, setItemWidth] = useState(30)
   useEffect(() => {
     if (getWidth1.current) {
       const width = getWidth1.current.offsetWidth;
