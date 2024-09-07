@@ -11,14 +11,7 @@ const Main = () => {
   const [arr7, setArr7] = useState([]);
   const [arr8, setArr8] = useState([]);
   const [arr9, setArr9] = useState([]);
-  const getWidth1 = useRef(null)
-  const [itemWidth, setItemWidth] = useState(30)
-  useEffect(() => {
-    if (getWidth1.current) {
-      const width = getWidth1.current.offsetWidth;
-      console.log("Element kengligi:", width);
-    }
-  }, []);
+
   const items = [
     { id: 1, category: 1, color: "red" },
     { id: 2, category: 1, color: "red" },
@@ -174,7 +167,14 @@ const Main = () => {
       setChangeId2("")
     }
   }
-
+  const getWidth1 = useRef(null)
+  const [itemWidth, setItemWidth] = useState(0)
+  useEffect(() => {
+    if (getWidth1.current) {
+      const width = getWidth1.current.offsetWidth;
+      setItemWidth(width)
+    }
+  }, [changeId1, changeId2]);
 
   return (
     <div className='main'>
