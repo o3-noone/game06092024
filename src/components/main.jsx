@@ -11,7 +11,74 @@ const Main = () => {
   const [arr7, setArr7] = useState([]);
   const [arr8, setArr8] = useState([]);
   const [arr9, setArr9] = useState([]);
-
+  const timer = 0
+  const categories = [
+    {
+      id: 1,
+      category: 1,
+      color: "red"
+    },
+    {
+      id: 2,
+      category: 2,
+      color: "white"
+    },
+    {
+      id: 3,
+      category: 3,
+      color: "blue"
+    },
+    {
+      id: 4,
+      category: 4,
+      color: "green"
+    },
+    {
+      id: 5,
+      category: 5,
+      color: "yellow"
+    },
+    {
+      id: 6,
+      category: 6,
+      color: "purple"
+    },
+    {
+      id: 7,
+      category: 7,
+      color: "orange"
+    },
+    {
+      id: 8,
+      category: 8,
+      color: "cyan"
+    },
+    {
+      id: 9,
+      category: 9,
+      color: "magenta"
+    },
+    {
+      id: 10,
+      category: 10,
+      color: "lime"
+    },
+    {
+      id: 11,
+      category: 11,
+      color: "maroon"
+    },
+    {
+      id: 12,
+      category: 12,
+      color: "navy"
+    },
+    {
+      id: 13,
+      category: 13,
+      color: "teal"
+    },
+  ];
   const items = [
     { id: 1, category: 1, color: "red" },
     { id: 2, category: 1, color: "red" },
@@ -175,11 +242,34 @@ const Main = () => {
       setItemWidth(width)
     }
   }, [changeId1, changeId2]);
+  const [formattedTime, setFormattedTime] = useState("00:00:00");  
 
+  useEffect(() => {  
+    let intervalId;  
+
+    if (arr9.length >= 1) {  
+      intervalId = setInterval(() => {  
+        setScore(prevScore => prevScore + 1);  
+      }, 1000);  
+    }  
+
+    return () => {  
+      clearInterval(intervalId);  
+    };  
+  }, [arr9.length]);  
+
+  useEffect(() => {  
+    const seconds = score;  
+    const hours = String(Math.floor(seconds / 3600)).padStart(2, '0');  
+    const minutes = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');  
+    const remainingSeconds = String(seconds % 60).padStart(2, '0');  
+
+    setFormattedTime(`${hours}:${minutes}:${remainingSeconds}`);  
+  }, [score]);
   return (
     <div className='main'>
       <div className="main__title">
-        {/* Score: {score} */}
+        Time: {formattedTime}
       </div>
       <div className="main__game">
         <div className="game__box">
